@@ -1,20 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Two Hearts — The Garden of Us</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Anniversary Vault</title>
+    <!-- Importing romantic and clean fonts from Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* DYNAMIC MOVING GRADIENT */
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffb1c1, #ffc3a0);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* The animation that moves the background */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .vault-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .vault-card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #ff4b72;
+            margin-bottom: 10px;
+        }
+
+        .hint {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .hint strong {
+            color: #ff4b72;
+            font-weight: 600;
+        }
+
+        input[type="date"] {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            padding: 12px;
+            width: 80%;
+            border: 2px solid #ffb6c1;
+            border-radius: 10px;
+            outline: none;
+            color: #333;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="date"]:focus {
+            border-color: #ff4b72;
+        }
+
+        button {
+            background-color: #ff4b72;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 75, 114, 0.4);
+        }
+
+        button:hover {
+            background-color: #e6395e;
+            transform: scale(1.05);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            min-height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-<div id="game-wrap">
-  <canvas id="game" width="1280" height="720" aria-label="Two Hearts puzzle game"></canvas>
-  <div id="hint">Arrow keys / A-D to move · Space to jump · Tab to switch</div>
-  <div id="mobile">
-    <button data-key="left">◀</button><button data-key="right">▶</button>
-    <button data-key="jump">▲</button><button id="switchBtn">↔</button>
-  </div>
-</div>
-<script src="game.js"></script>
+
+    <div class="vault-card">
+        <h1>For My Eyes Only</h1>
+        <p class="hint">Password Hint: <br><strong>"The best day in my life"</strong></p>
+        
+        <input type="date" id="passwordDate" required>
+        <br>
+        <button onclick="checkPassword()">Unlock</button>
+        
+        <p class="error-message" id="errorMsg">Not quite, try again my love! 💕</p>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const selectedDate = document.getElementById("passwordDate").value;
+            const errorMsg = document.getElementById("errorMsg");
+            const correctDate = "2024-09-08";
+
+            if (selectedDate === correctDate) {
+                errorMsg.classList.remove("show");
+                // Redirects to your adventure page (assuming they are in the same folder)
+                window.location.href = "adventure.html"; 
+            } else {
+                errorMsg.classList.add("show");
+            }
+        }
+    </script>
+
 </body>
 </html>

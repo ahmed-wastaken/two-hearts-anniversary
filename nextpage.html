@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <!-- Fonts matching the Vault page -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* DYNAMIC MOVING GRADIENT */
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffb1c1, #ffc3a0);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1.page-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #ff4b72;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
+            text-align: center;
+        }
+
+        /* MENU CONTAINER */
+        .menu-container {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            z-index: 2;
+        }
+
+        .option-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 25px 20px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            text-align: center;
+            width: 160px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .option-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 75, 114, 0.3);
+        }
+
+        .option-card .icon {
+            font-size: 3rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .option-card span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ff4b72;
+        }
+
+        /* DISPLAY STAGE */
+        .stage {
+            width: 100%;
+            max-width: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 250px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* --------------------------------------
+           LETTER / ENVELOPE ANIMATION
+        -------------------------------------- */
+        .envelope-wrapper {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #ffb1c1;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            margin-top: 40px;
+            cursor: pointer;
+        }
+
+        /* Envelope Top Flap */
+        .envelope-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid #ff9a9e;
+            transform-origin: top;
+            transition: transform 0.6s ease;
+            z-index: 5;
+        }
+
+        /* Envelope Pocket (Front Face) */
+        .envelope-pocket {
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 0;
+            border-left: 150px solid #ffc3a0;
+            border-right: 150px solid #ffc3a0;
+            border-bottom: 100px solid #fecfef;
+            border-top: 100px solid transparent;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 4;
+        }
+
+        /* The Letter Paper */
+        .letter {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            width: 270px;
+            background: #fffdf9;
+            padding: 25px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.8s ease, z-index 0.8s;
+            z-index: 2;
+            max-height: 180px;
+            overflow: hidden;
+            font-family: 'Dancing Script', cursive;
+            color: #4a2c2c;
+            line-height: 1.6;
+            font-size: 1.15rem;
+        }
+
+        /* Open State for Envelope */
+        .envelope-wrapper.open::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        /* Fixed letter positioning to keep it contained inside the viewport */
+        .envelope-wrapper.open .letter {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            z-index: 100;
+            height: 80vh;
+            max-height: 80vh;
+            width: 90vw;
+            max-width: 500px;
+            overflow-y: auto;
+            border: 3px solid #ffb6c1;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            cursor: default;
+        }
+
+        .letter p {
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            display: none;
+            background: #ff4b72;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 75, 114, 0.3);
+        }
+
+        .envelope-wrapper.open .close-btn {
+            display: inline-block;
+        }
+
+        /* --------------------------------------
+           GIFT BOX & COUPON ANIMATION
+        -------------------------------------- */
+        .gift-wrapper {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            cursor: pointer;
+            margin-top: 40px;
+        }
+
+        .gift-box {
+            position: absolute;
+            bottom: 0;
+            width: 160px;
+            height: 120px;
+            background: #ff4b72;
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Ribbon Vertical */
+        .gift-box::before, .gift-lid::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 100%;
+            background: #ffd166;
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: 25px;
+            left: -10px;
+            width: 180px;
+            height: 35px;
+            background: #e6395e;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            transition: transform 0.6s ease;
+            z-index: 5;
+        }
+
+        /* Bow */
+        .gift-lid::after {
+            content: '🎀';
+            font-size: 2.5rem;
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Open State for Gift */
+        .gift-wrapper.open .gift-lid {
+            transform: translateY(-80px) rotate(-15deg);
+        }
+
+        /* COUPON TICKET */
+        .coupon {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.2);
+            width: 320px;
+            background: #fff;
+            border: 3px dashed #ff4b72;
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.6s ease;
+            z-index: 20;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .gift-wrapper.open .coupon {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-100px) scale(1);
+        }
+
+        .coupon h3 {
+            color: #ff4b72;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .coupon .pass-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.7rem;
+            color: #e6395e;
+            margin: 15px 0 20px 0;
+        }
+
+        .coupon .date-badge {
+            background: #ffe6ea;
+            color: #ff4b72;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        @media (max-width: 480px) {
+            h1.page-title { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="page-title">Choose Your Surprise</h1>
+
+    <!-- 2 OPTIONS MENU -->
+    <div class="menu-container">
+        <div class="option-card" onclick="showSection('letter')">
+            <span class="icon">✉️</span>
+            <span>The Letter</span>
+        </div>
+        <div class="option-card" onclick="showSection('gift')">
+            <span class="icon">🎁</span>
+            <span>The Gift</span>
+        </div>
+    </div>
+
+    <!-- STAGE AREA -->
+    <div class="stage">
+
+        <!-- ENVELOPE & LETTER SECTION -->
+        <div id="letter-section" class="envelope-wrapper hidden" onclick="toggleEnvelope()">
+            <div class="envelope-pocket"></div>
+            <div class="letter" id="letter-content" onclick="event.stopPropagation();">
+                <p>To the Cutie with the Big O’ Booty,</p>
+                <p>Two years.</p>
+                <p>Two whole years of you stealing my hoodies, stealing my attention, stealing my heart… and somehow still managing to look ridiculously cute while doing all three.</p>
+                <p>And yes, I’m still completely obsessed with you.</p>
+                <p>Your smile. Your laugh. Your little habits. The way you look at me. The way you make ordinary days feel special. And, of course, that big O’ booty that deserves its own anniversary celebration.</p>
+                <p>They say time flies when you’re having fun… but honestly, two years with you feels like it went by faster than my self-control whenever you wear those yoga pants, yet at the same time, I feel like I’ve spent a lifetime with you.</p>
+                <p>But seriously, I hope you know how much you mean to me. I don't just love the fun moments or the cute moments. I love us. The conversations, the stupid dad jokes, the little disagreements, the brainrot TikToks, the memories, and all the moments in between.</p>
+                <p>If I could go back two years and meet you all over again, knowing everything I know now, I’d still choose you.</p>
+                <p>Actually, I’d probably flirt with you even harder without Carlos this time.</p>
+                <p>Happy 2nd anniversary, my love.</p>
+                <p>I love you more than words can properly explain… and I’m still very much looking forward to spending the rest of my life finding creative ways to remind you just how ridiculously attractive you are.</p>
+                <p>Forever yours,<br>Your Secret Admirer ❤️</p>
+                
+                <div style="text-align: center;">
+                    <button class="close-btn" onclick="toggleEnvelope()">Close Letter</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- GIFT BOX & COUPON SECTION -->
+        <div id="gift-section" class="gift-wrapper hidden" onclick="toggleGift()">
+            <div class="gift-lid"></div>
+            <div class="gift-box"></div>
+            
+            <div class="coupon">
+                <h3>VIP Anniversary Pass</h3>
+                <div class="pass-title">5-Day All Access Pass</div>
+                <div class="date-badge" id="pass-date">Starts Tonight @ Midnight!</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function showSection(type) {
+            const letterSec = document.getElementById('letter-section');
+            const giftSec = document.getElementById('gift-section');
+
+            // Reset open states
+            letterSec.classList.remove('open');
+            giftSec.classList.remove('open');
+
+            if (type === 'letter') {
+                giftSec.classList.add('hidden');
+                letterSec.classList.remove('hidden');
+            } else if (type === 'gift') {
+                letterSec.classList.add('hidden');
+                giftSec.classList.remove('hidden');
+                calculatePassDate();
+            }
+        }
+
+        function toggleEnvelope() {
+            const letterSec = document.getElementById('letter-section');
+            letterSec.classList.toggle('open');
+        }
+
+        function toggleGift() {
+            const giftSec = document.getElementById('gift-section');
+            giftSec.classList.toggle('open');
+        }
+
+        // Dynamically calculates dates for the 5-day pass starting tonight at midnight
+        function calculatePassDate() {
+            const today = new Date();
+            const startDate = new Date(today);
+            startDate.setDate(today.getDate() + 1); // Tomorrow 12:00 AM (Midnight)
+            
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + 4); // 5 days total
+
+            const options = { month: 'short', day: 'numeric' };
+            const startStr = startDate.toLocaleDateString('en-US', options);
+            const endStr = endDate.toLocaleDateString('en-US', options);
+
+            document.getElementById('pass-date').innerText = `Valid: ${startStr} (Midnight) - ${endStr}`;
+        }
+    </script>
+</body>
+</html>

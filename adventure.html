@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Adventure Awaits</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* DYNAMIC MOVING GRADIENT */
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffb1c1, #ffc3a0);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+            
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; 
+        }
+
+        /* The animation that moves the background */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .vault-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 50px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            color: #ff4b72;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            min-height: 50px; 
+        }
+
+        button {
+            background-color: #ff4b72;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 75, 114, 0.4);
+        }
+
+        button:hover {
+            background-color: #e6395e;
+            transform: scale(1.05);
+        }
+
+        #noBtn.running {
+            position: fixed;
+            transition: left 0.3s ease, top 0.3s ease; 
+            z-index: 999;
+        }
+
+        #yesBtn {
+            background-color: #e6395e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="vault-card">
+        <h1>Do you wanna play a little game with me?</h1>
+        
+        <div class="button-container">
+            <button id="yesBtn" onclick="sayYes()">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+
+        function runAway(e) {
+            if(e) e.preventDefault();
+            noBtn.classList.add('running');
+
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20; 
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        noBtn.addEventListener('mouseover', runAway);
+        noBtn.addEventListener('touchstart', runAway);
+        noBtn.addEventListener('click', runAway); 
+
+        function sayYes() {
+            // === PASTE YOUR FINAL REDIRECT LINK BELOW ===
+            window.location.href = "game.html"; 
+            // ======================================
+        }
+    </script>
+
+</body>
+</html>
