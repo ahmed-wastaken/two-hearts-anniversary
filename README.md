@@ -1,59 +1,35 @@
-# Two Hearts — Anniversary Puzzle
+# Two Hearts — The Garden of Us
 
-A browser-first, mobile-friendly 2D pixel-art anniversary puzzle game built with Phaser 3.
+A single-screen romantic puzzle-platformer prototype based on the puzzle you described.
 
-## Run it
-
-### Easiest
-Because the game loads Phaser from a CDN, you can serve the folder with any simple static server.
-
-Python:
-```bash
-python3 -m http.server 8080
-```
-
-Then open:
-http://localhost:8080
-
-Node:
-```bash
-npx serve .
-```
-
-## Customize the gift
-
-Open `game.js` and change:
-
-```js
-const ANNIVERSARY_MESSAGE = "Happy Anniversary ❤️";
-const ANNIVERSARY_DESTINATION_URL = "";
-```
-
-For example:
-
-```js
-const ANNIVERSARY_MESSAGE = "Happy 3rd Anniversary, My Love ❤️";
-const ANNIVERSARY_DESTINATION_URL = "https://your-final-page.com";
-```
+## Puzzle sequence
+1. Boy starts on the left.
+2. Boy jumps over the lava and reaches the lever.
+3. Lever opens the girl's first gate.
+4. Girl crosses her lava and reaches her pressure plate.
+5. Her plate opens the boy's gate.
+6. Boy enters the middle and activates the middle pressure plate.
+7. The final gate opens.
+8. Girl enters the center and the two meet.
 
 ## Controls
+- Arrow keys or A/D: move
+- Space / Up / W: jump
+- Tab: switch character
+- Mobile buttons are shown on narrow screens
+- R: restart after winning
 
-Desktop:
-- A / D or Arrow keys — move
-- Space / Up — jump
-- Tab — switch character
+## Run locally
+From this folder:
 
-Mobile:
-- Bottom-left / center — move
-- JUMP — jump
-- SWITCH — swap between boy and girl
+    python3 -m http.server 8080
 
-Landscape orientation is recommended.
+Then open:
 
-## Structure
+    http://localhost:8080
 
-- `index.html` — browser entry point
-- `style.css` — fullscreen/mobile presentation
-- `game.js` — game, level, physics, puzzle logic, procedural pixel-art assets
+## GitHub Pages
+Upload the entire folder contents to a public GitHub repository, with `index.html` at the repository root, then enable GitHub Pages from Settings → Pages → Deploy from branch → main → /(root).
 
-The graphics are intentionally generated as crisp pixel-art primitives so the prototype has no external asset dependency. For a final gift-quality version, replace the procedural sprites/backgrounds with a dedicated pixel-art asset pack while keeping the same gameplay architecture.
+## Notes
+The character sprites are cropped from the character sheets supplied for this project. The level art is drawn in code so the puzzle geometry remains editable and the entire level stays visible on one screen.

@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="theme-color" content="#151526">
-  <title>Two Hearts — Anniversary Puzzle</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Two Hearts — The Garden of Us</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="game"></div>
-  <div id="rotate-message">
-    <div class="rotate-heart">♥</div>
-    <div>Turn your phone sideways</div>
-    <small>for the best experience</small>
+<div id="game-wrap">
+  <canvas id="game" width="1280" height="720" aria-label="Two Hearts puzzle game"></canvas>
+  <div id="hint">Arrow keys / A-D to move · Space to jump · Tab to switch</div>
+  <div id="mobile">
+    <button data-key="left">◀</button><button data-key="right">▶</button>
+    <button data-key="jump">▲</button><button id="switchBtn">↔</button>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js"></script>
-  <script src="game.js"></script>
+</div>
+<script src="game.js"></script>
 </body>
 </html>
